@@ -1,0 +1,90 @@
+Second: Write a query that directly answers a predetermined question from a business stakeholder 
+
+What are the top 5 brands by receipts scanned for most recent month?
+
+select name 
+from brands b
+left join rewardsReceiptItemList rrs
+on b.barcode = rrs.barcode
+left join receipts r 
+ON r._id = rrs.receipt_id
+where datepart(m, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(m, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1))
+and datepart(yyyy, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(yyyy, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1))
+group by name
+order by count(r._id) desc
+limit 5;
+
+How does the ranking of the top 5 brands by receipts scanned for the recent month compare to the ranking for the previous month?
+
+with brand_list as (select name 
+from brands b
+left join rewardsReceiptItemList rrs
+on b.barcode = rrs.barcode
+left join receipts r 
+ON r._id = rrs.receipt_id
+where datepart(m, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(m, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1))
+and datepart(yyyy, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(yyyy, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1))
+group by name
+order by count(r._id) desc
+limit 5;
+) union 
+
+(select name 
+from brands b
+left join rewardsReceiptItemList rrs
+on b.barcode = rrs.barcode
+left join receipts r 
+ON r._id = rrs.receipt_id
+where datepart(m, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(m, dateadd(m, -1, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1)))
+and datepart(yyyy, DATEADD(SS, CONVERT(BIGINT, SUBSTRING(r.DateScanned, 4,10)), '19700101')) = datepart(yyyy, dateadd(m, -1, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by 1 desc limit 1)))
+group by name
+order by count(r._id) desc
+limit 5;
+)
+
+select * from brand_list;
+
+When considering average spend from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
+
+select rewardsReceiptStatus  
+FROM receipts 
+where rewardsReceiptStatus = 'FINISHED' or rewardsReceiptStatus = 'REJECTED'
+group by 1
+order by avg(totalSpent) desc
+limit 1;
+
+When considering total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
+
+SELECT rewardsReceiptStatus 
+FROM receipts 
+where rewardsReceiptStatus = 'FINISHED' or rewardsReceiptStatus = 'REJECTED'
+group by 1
+order by sum(purchasedItemCount) desc
+limit 1;
+
+Which brand has the most spend among users who were created within the past 6 months?
+
+select name
+from brands b
+left join rewardsReceiptItemList rrs
+on b.barcode = rrs.barcode
+left join users u 
+ON u._id= r.userId
+where u.createDate > select DATEADD(MONTH, -6, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by desc limit 1)
+group by 1
+order by sum(totalSpent) desc
+limit 1;
+
+
+Which brand has the most transactions among users who were created within the past 6 months?
+
+select name
+from brands b
+left join rewardsReceiptItemList rrs
+on b.barcode = rrs.barcode
+left join receipts r ON r._id= reward.receipt_id
+left join users u ON u.user_id= r.userId
+where u.createDate > select DATEADD(MONTH, -6, select DATEADD(SS, CONVERT(BIGINT, SUBSTRING(DateScanned, 4,10)), '19700101') from r order by desc limit 1)
+group by 1
+order by count(r.userId) desc
+limit 1;
