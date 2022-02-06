@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "object",
+      "properties": {
+        "$oid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "$oid"
+      ]
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "createdDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "lastLogin": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "role": {
+      "type": "string"
+    },
+    "signUpSource": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "_id",
+    "active",
+    "createdDate",
+    "lastLogin",
+    "role",
+    "signUpSource",
+    "state"
+  ]
+}
