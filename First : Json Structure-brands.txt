@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "object",
+      "properties": {
+        "$oid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "$oid"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "cpg": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "type": "string"
+        },
+        "$id": {
+          "type": "object",
+          "properties": {
+            "$oid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$oid"
+          ]
+        }
+      },
+      "required": [
+        "$ref",
+        "$id"
+      ]
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "brandCode": {
+      "type": "string"
+    },
+    "topBrand": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "_id",
+    "name",
+    "category",
+    "cpg",
+    "barcode",
+    "brandCode",
+    "topBrand"
+  ]
+}
