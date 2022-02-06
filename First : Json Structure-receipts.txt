@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "object",
+      "properties": {
+        "$oid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "$oid"
+      ]
+    },
+    "bonusPointsEarned": {
+      "type": "integer"
+    },
+    "bonusPointsEarnedReason": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "dateScanned": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "finishedDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "modifyDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "pointsAwardedDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "pointsEarned": {
+      "type": "string"
+    },
+    "purchaseDate": {
+      "type": "object",
+      "properties": {
+        "$date": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "$date"
+      ]
+    },
+    "purchasedItemCount": {
+      "type": "integer"
+    },
+    "rewardsReceiptItemList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "barcode": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "finalPrice": {
+              "type": "string"
+            },
+            "itemPrice": {
+              "type": "string"
+            },
+            "needsFetchReview": {
+              "type": "boolean"
+            },
+            "partnerItemId": {
+              "type": "string"
+            },
+            "preventTargetGapPoints": {
+              "type": "boolean"
+            },
+            "quantityPurchased": {
+              "type": "integer"
+            },
+            "userFlaggedBarcode": {
+              "type": "string"
+            },
+            "userFlaggedNewItem": {
+              "type": "boolean"
+            },
+            "userFlaggedPrice": {
+              "type": "string"
+            },
+            "userFlaggedQuantity": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "barcode",
+            "description",
+            "finalPrice",
+            "itemPrice",
+            "needsFetchReview",
+            "partnerItemId",
+            "preventTargetGapPoints",
+            "quantityPurchased",
+            "userFlaggedBarcode",
+            "userFlaggedNewItem",
+            "userFlaggedPrice",
+            "userFlaggedQuantity"
+          ]
+        }
+      ]
+    },
+    "rewardsReceiptStatus": {
+      "type": "string"
+    },
+    "totalSpent": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "_id",
+    "bonusPointsEarned",
+    "bonusPointsEarnedReason",
+    "createDate",
+    "dateScanned",
+    "finishedDate",
+    "modifyDate",
+    "pointsAwardedDate",
+    "pointsEarned",
+    "purchaseDate",
+    "purchasedItemCount",
+    "rewardsReceiptItemList",
+    "rewardsReceiptStatus",
+    "totalSpent",
+    "userId"
+  ]
+}
