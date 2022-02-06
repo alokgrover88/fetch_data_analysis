@@ -1,0 +1,23 @@
+The dataset doesn’t confirm to the variable definitions. There are duplicate barcodes but the entries are usually random values like , test%. It seems like there is test data in this dataset.
+
+An exploratory analysis revealed the following : 
+
+Users
+
+•	Duplicate records 
+    Total entries : 495
+    After removing duplicates : 212
+    
+•	Missing value
+    lastLogin: 62 ; length(which(is.na(users$lastLogin)))
+    state:56 ; length(which(users$state == "-"))
+    signUpSource:48; length(which(users$signUpSource == "-"))
+    role = fetch-staff, 8 when it is supposed to be set to CONSUMER 
+    
+•	Topbrand is supposed to be Boolean but contains 0 and 1
+
+•	Not all users are in the receipts 
+
+•	The quantity in the receipts might not match the quantity in receipts list
+
+•	All the accounts are marked as active 1, but it seems like 40 accounts don’t have a lastLogin. Probably these users created an account but never confirmed it via email link or logged in using the app
