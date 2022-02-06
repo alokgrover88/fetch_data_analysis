@@ -1,0 +1,17 @@
+Business Objective: 
+  •	Showcasing to partners the risk-reward of offering a promotion on an item. Guiding partners on what to list and what promotion to offer
+  •	Listing promotions on item that customer is interested in
+  •	Determining profitable listings for Fetch Rewards
+
+The dataset requires various forms of manipulation before it can be useful for analytics. Broadly, these issues can be categorized as follows: 
+
+ Data Collection:  
+    There is duplication of data, mismatched users in different tables, and invalid variable entries.
+ 
+ Integrity Issues: 
+    It seems like the dataset contains data from dev/test environment due to unintended transfer or misconfiguration. The presence of dummy users and test brands is quite evident in the dataset.   
+
+The above can be addressed by adequate cleaning, handling missing values, and removing duplicate values. The character string encoding issues can be appropriately dealt with via a programming language. The timestamps require conversion from UNIX to human readable form to answer business questions. 
+I believe that working closely with Data Engineering team and project managers can help achieve the business objective in an effective and efficient manner. 
+
+I am happy to delve deep into the technicalities with the appropriate stakeholders. 
